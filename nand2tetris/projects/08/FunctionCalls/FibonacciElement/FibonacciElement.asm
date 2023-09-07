@@ -1,0 +1,437 @@
+@256
+D=A
+@SP
+M=D
+@Sys.init
+0;JMP
+//type=FUNCTION, originFileName=Main, arg1=Main.fibonacci, arg2=0
+(Main.fibonacci)
+
+//type=PUSH, originFileName=Main, arg1=argument, arg2=0
+@ARG
+D=M
+@0
+A=D+A
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=Main, arg1=constant, arg2=2
+@2
+D=A
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=LT, originFileName=Main, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF16
+D;JLT
+@ELSE16
+0;JMP
+ (IF16)
+   D=-1
+   @ENDIF16
+   0;JMP
+ (ELSE16)
+   D=0
+ (ENDIF16)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=IF_GOTO, originFileName=Main, arg1=IF_TRUE, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@IF_TRUE
+D;JNE
+//type=GOTO, originFileName=Main, arg1=IF_FALSE, arg2=null
+@IF_FALSE
+D;JMP
+//type=LABEL, originFileName=Main, arg1=IF_TRUE, arg2=null
+(IF_TRUE)
+//type=PUSH, originFileName=Main, arg1=argument, arg2=0
+@ARG
+D=M
+@0
+A=D+A
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=RETURN, originFileName=Main, arg1=null, arg2=null
+@LCL
+D=M
+@endFrame
+M=D
+@5
+D=A
+@endFrame
+D=M-D
+A=D
+D=M
+@retAddr
+M=D
+            @SP
+M=M-1
+@SP
+A=M
+D=M
+@ARG
+A=M
+M=D
+@ARG
+D=M+1
+@SP
+M=D
+@4
+D=A
+@endFrame
+D=M-D
+A=D
+D=M
+@LCL
+M=D
+@3
+D=A
+@endFrame
+D=M-D
+A=D
+D=M
+@ARG
+M=D
+@2
+D=A
+@endFrame
+D=M-D
+A=D
+D=M
+@THIS
+M=D
+@endFrame
+D=M-1
+A=D
+D=M
+@THAT
+M=D
+@retAddr
+A=M
+0;JMP
+//type=LABEL, originFileName=Main, arg1=IF_FALSE, arg2=null
+(IF_FALSE)
+//type=PUSH, originFileName=Main, arg1=argument, arg2=0
+@ARG
+D=M
+@0
+A=D+A
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=Main, arg1=constant, arg2=2
+@2
+D=A
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=SUB, originFileName=Main, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=CALL, originFileName=Main, arg1=Main.fibonacci, arg2=1
+@SP
+D=M
+D=D+1
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@LCL
+D=M
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@ARG
+D=M
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@THIS
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@THAT
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@1
+D=A
+@5
+D=D+A
+@SP
+D=M-D
+@ARG
+M=D
+@SP
+D=M
+@LCL
+M=D
+@Main.fibonacci
+0;JMP
+//type=PUSH, originFileName=Main, arg1=argument, arg2=0
+@ARG
+D=M
+@0
+A=D+A
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=Main, arg1=constant, arg2=1
+@1
+D=A
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=SUB, originFileName=Main, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=CALL, originFileName=Main, arg1=Main.fibonacci, arg2=1
+@SP
+D=M
+D=D+1
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@LCL
+D=M
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@ARG
+D=M
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@THIS
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@THAT
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@1
+D=A
+@5
+D=D+A
+@SP
+D=M-D
+@ARG
+M=D
+@SP
+D=M
+@LCL
+M=D
+@Main.fibonacci
+0;JMP
+//type=ADD, originFileName=Main, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M+D
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=RETURN, originFileName=Main, arg1=null, arg2=null
+@LCL
+D=M
+@endFrame
+M=D
+@5
+D=A
+@endFrame
+D=M-D
+A=D
+D=M
+@retAddr
+M=D
+            @SP
+M=M-1
+@SP
+A=M
+D=M
+@ARG
+A=M
+M=D
+@ARG
+D=M+1
+@SP
+M=D
+@4
+D=A
+@endFrame
+D=M-D
+A=D
+D=M
+@LCL
+M=D
+@3
+D=A
+@endFrame
+D=M-D
+A=D
+D=M
+@ARG
+M=D
+@2
+D=A
+@endFrame
+D=M-D
+A=D
+D=M
+@THIS
+M=D
+@endFrame
+D=M-1
+A=D
+D=M
+@THAT
+M=D
+@retAddr
+A=M
+0;JMP
+//type=FUNCTION, originFileName=Sys, arg1=Sys.init, arg2=0
+(Sys.init)
+
+//type=PUSH, originFileName=Sys, arg1=constant, arg2=4
+@4
+D=A
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=CALL, originFileName=Sys, arg1=Main.fibonacci, arg2=1
+@SP
+D=M
+D=D+1
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@LCL
+D=M
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@ARG
+D=M
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@THIS
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@THAT
+            @SP
+A=M
+M=D
+@SP
+M=M+1
+@1
+D=A
+@5
+D=D+A
+@SP
+D=M-D
+@ARG
+M=D
+@SP
+D=M
+@LCL
+M=D
+@Main.fibonacci
+0;JMP
+//type=LABEL, originFileName=Sys, arg1=WHILE, arg2=null
+(WHILE)
+//type=GOTO, originFileName=Sys, arg1=WHILE, arg2=null
+@WHILE
+D;JMP

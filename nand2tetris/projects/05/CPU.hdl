@@ -1,0 +1,101 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/05/CPU.hdl
+
+/**
+ * The Hack CPU (Central Processing unit), consisting of an ALU,
+ * two registers named A and D, and a program counter named PC.
+ * The CPU is designed to fetch and execute instructions written in 
+ * the Hack machine language. In particular, functions as follows:
+ * Executes the inputted instruction according to the Hack machine 
+ * language specification. The D and A in the language specification
+ * refer to CPU-resident registers, while M refers to the external
+ * memory location addressed by A, i.e. to Memory[A]. The inM input 
+ * holds the value of this location. If the current instruction needs 
+ * to write a value to M, the value is placed in outM, the address 
+ * of the target location is placed in the addressM output, and the 
+ * writeM control bit is asserted. (When writeM==0, any value may 
+ * appear in outM). The outM and writeM outputs are combinational: 
+ * they are affected instantaneously by the execution of the current 
+ * instruction. The addressM and pc outputs are clocked: although they 
+ * are affected by the execution of the current instruction, they commit 
+ * to their new values only in the next time step. If reset==1 then the 
+ * CPU jumps to address 0 (i.e. pc is set to 0 in next time step) rather 
+ * than to the address resulting from executing the current instruction. 
+ */
+
+CHIP CPU {
+
+    IN  inM[16],         // M value input  (M = contents of RAM[A])
+        instruction[16], // Instruction for execution
+        reset;           // Signals whether to re-start the current
+                         // program (reset==1) or continue executing
+                         // the current program (reset==0).
+
+    OUT outM[16],        // M value output
+        writeM,          // Write to M? 
+        addressM[15],    // Address in data memory (of M)
+        pc[15];          // address of next instruction
+
+    PARTS:
+    // Put your code here:
+    // 0011000000111001
+    
+    And(a=true, b=instruction[15], out=isCInst); // out if it's a C instruction
+
+    // if it's C inst, use output from ALU else use input instruction
+    Mux16(a=instruction, b=aluOut, sel=isCInst, out=instructionMux); 
+
+    Not(in=isCInst, out=isAInst); // out if it's A instruction
+
+    And(a=isCInst, b=instruction[5], out=CInstStoreToA); // out if it's C instruction storable in A register
+    Or(a=isAInst, b=CInstStoreToA, out=loadA); // out whether to store in A register
+    ARegister(in=instructionMux, load=loadA, out=outA); 
+
+    And(a=isCInst,b=instruction[12],out=useMInstruction); // if it's C instruction and 'a' bit is 1 use M instruction as ALU input
+    Mux16(a=outA, b=inM, sel=useMInstruction, out=AorMout);
+
+    And(a=isCInst, b=instruction[4], out=loadD);
+    DRegister(in=aluOut, load=loadD, out=outD);
+
+    Or(a=false, b=instruction[3], out=writeMcond1);
+    And(a=writeMcond1, b=isCInst, out=writeM); // write to M if bit at index 3 is true
+    Or16(a=false, b=aluOut, out=outM);
+    Or16(a=false, b=outA, out[0..14]=addressM);
+    
+    ALU(x=outD, y=AorMout, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], no=instruction[6], out=aluOut, ng=ng, zr=zr);
+    Not(in=ng, out=notng); // opposite value of ng i.e. positive output
+    Not(in=zr, out=notzr);
+    And(a=notng, b=notzr, out=pz);
+
+    Or(a=instruction[0], b=instruction[1], out=j3orj2);
+    Or(a=instruction[2], b=instruction[1], out=j1orj2);
+    Or(a=instruction[0], b=instruction[2], out=j1orj3);
+    Not(in=j1orj2, out=j1j2iszero);
+    Not(in=j1orj3, out=j1j3iszero);
+    Or(a=j3orj2, b=instruction[3], out=j3orj2orj1);
+    Not(in=j3orj2orj1, out=j1andj2andj3is0);
+
+    And(a=instruction[0], b=instruction[1], out=j3andj2);
+    And(a=j3andj2, b=instruction[3], out=JMP); // unconditional jump, j1j2j3=111
+
+    And(a=instruction[2], b=ng, out=jltcond1); // jump if out < 0
+    And(a=j1j2iszero, b=jltcond1, out=JLT); // JLT=j1 is zero and j2andj3 are 0
+
+    And(a=instruction[1], b=zr, out=jeqcond1);
+    And(a=jeqcond1, b=j1j3iszero, out=JEQ); // jump if out = 0
+    Or(a=jltcond1, b=jeqcond1, out=JLE); // jump if out <= 0
+    And(a=instruction[0], b=pz, out=jgtcond1);
+    And(a=j1j2iszero, b=jgtcond1, out=JGT); // jump if out > 0
+    Or(a=jgtcond1, b=jeqcond1, out=JGE); // jump if out >= 0
+    Or(a=jgtcond1, b=jltcond1, out=JNE);
+
+    Or8Way(in[0]=false, in[1]=JMP, in[2]=JLT, in[3]=JEQ, in[4]=JLE, in[5]=JGT, in[6]=JGE, in[7]=JNE, out=jumpcond); // different jump conditions
+    And(a=jumpcond, b=isCInst, out=shouldjump); // jump calculations are necessary in case of C instruction
+    Not(in=shouldjump, out=nojump);
+    Or(a=j1andj2andj3is0, b=nojump, out=cinccond); // conditions when instructin is cInst
+    Or(a=cinccond, b=isAInst, out=increment);
+
+    PC(in=outA, load=shouldjump, inc=increment, reset=reset, out[0..14]=pc);
+}

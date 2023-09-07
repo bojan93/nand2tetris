@@ -1,0 +1,485 @@
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=17
+@17
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=17
+@17
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=EQ, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF16
+D;JEQ
+@ELSE16
+0;JMP
+ (IF16)
+   D=-1
+   @ENDIF16
+   0;JMP
+ (ELSE16)
+   D=0
+ (ENDIF16)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=17
+@17
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=16
+@16
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=EQ, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF17
+D;JEQ
+@ELSE17
+0;JMP
+ (IF17)
+   D=-1
+   @ENDIF17
+   0;JMP
+ (ELSE17)
+   D=0
+ (ENDIF17)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=16
+@16
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=17
+@17
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=EQ, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF18
+D;JEQ
+@ELSE18
+0;JMP
+ (IF18)
+   D=-1
+   @ENDIF18
+   0;JMP
+ (ELSE18)
+   D=0
+ (ENDIF18)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=892
+@892
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=891
+@891
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=LT, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF19
+D;JLT
+@ELSE19
+0;JMP
+ (IF19)
+   D=-1
+   @ENDIF19
+   0;JMP
+ (ELSE19)
+   D=0
+ (ENDIF19)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=891
+@891
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=892
+@892
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=LT, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF20
+D;JLT
+@ELSE20
+0;JMP
+ (IF20)
+   D=-1
+   @ENDIF20
+   0;JMP
+ (ELSE20)
+   D=0
+ (ENDIF20)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=891
+@891
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=891
+@891
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=LT, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF21
+D;JLT
+@ELSE21
+0;JMP
+ (IF21)
+   D=-1
+   @ENDIF21
+   0;JMP
+ (ELSE21)
+   D=0
+ (ENDIF21)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=32767
+@32767
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=32766
+@32766
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=GT, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF22
+D;JGT
+@ELSE22
+0;JMP
+ (IF22)
+   D=-1
+   @ENDIF22
+   0;JMP
+ (ELSE22)
+   D=0
+ (ENDIF22)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=32766
+@32766
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=32767
+@32767
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=GT, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF23
+D;JGT
+@ELSE23
+0;JMP
+ (IF23)
+   D=-1
+   @ENDIF23
+   0;JMP
+ (ELSE23)
+   D=0
+ (ENDIF23)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=32766
+@32766
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=32766
+@32766
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=GT, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=M
+@SP
+M=M-1
+A=M
+D=M-D
+@IF24
+D;JGT
+@ELSE24
+0;JMP
+ (IF24)
+   D=-1
+   @ENDIF24
+   0;JMP
+ (ELSE24)
+   D=0
+ (ENDIF24)
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=57
+@57
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=31
+@31
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=53
+@53
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=ADD, originFileName=StackTest, arg1=null, arg2=null
+            @SP
+M=M-1
+A=M
+D=M
+            @SP
+M=M-1
+A=M
+D=M+D
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=112
+@112
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=SUB, originFileName=StackTest, arg1=null, arg2=null
+            @SP
+M=M-1
+A=M
+D=M
+            @SP
+M=M-1
+A=M
+D=M-D
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=NEG, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=-M
+@SP
+A=M
+M=D
+@SP
+M=M+1
+//type=AND, originFileName=StackTest, arg1=null, arg2=null
+            @SP
+M=M-1
+A=M
+D=M
+            @SP
+M=M-1
+A=M
+D=M&D
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=PUSH, originFileName=StackTest, arg1=constant, arg2=82
+@82
+D=A
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=OR, originFileName=StackTest, arg1=null, arg2=null
+            @SP
+M=M-1
+A=M
+D=M
+            @SP
+M=M-1
+A=M
+D=M|D
+@SP
+A=M
+M=D
+            @SP
+M=M+1
+//type=NOT, originFileName=StackTest, arg1=null, arg2=null
+@SP
+M=M-1
+A=M
+D=!M
+@SP
+A=M
+M=D
+@SP
+M=M+1

@@ -1,0 +1,62 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/05/Memory.hdl
+
+/**
+ * The complete address space of the Hack computer's memory,
+ * including RAM and memory-mapped I/O. 
+ * The chip facilitates read and write operations, as follows:
+ *     Read:  out(t) = Memory[address(t)](t)
+ *     Write: if load(t-1) then Memory[address(t-1)](t) = in(t-1)
+ * In words: the chip always outputs the value stored at the memory 
+ * location specified by address. If load==1, the in value is loaded 
+ * into the memory location specified by address. This value becomes 
+ * available through the out output from the next time step onward.
+ * Address space rules:
+ * Only the upper 16K+8K+1 words of the Memory chip are used. 
+ * Access to address>0x6000 is invalid. Access to any address in 
+ * the range 0x4000-0x5FFF results in accessing the screen memory 
+ * map. Access to address 0x6000 results in accessing the keyboard 
+ * memory map. The behavior in these addresses is described in the 
+ * Screen and Keyboard chip specifications given in the book.
+ */
+
+CHIP Memory {
+    IN in[16], load, address[15];
+    OUT out[16];
+
+    PARTS:
+    // Put your code here:
+    /*
+        if address[14] == 0
+            use RAM16k
+        else if address[14] == 1 && address[13] == 1 && restOfAddress == 0
+            use Keyboard
+        else 
+            use Screen
+    */
+    Xor(a=true, b=address[14], out=useRam);
+    And(a=load, b=useRam, out=loadAndUseRam);
+    RAM16K(in=in, load=loadAndUseRam, address=address[0..13], out=ramOut);
+
+    And(a=address[14], b=address[13], out=msones); // two most significant bits are 1
+    Or8Way(in=address[0..7], out=addrFirst8Bits);
+    Or8Way(in=address[5..12], out=addr5to12);
+    Or(a=addrFirst8Bits, b=addr5to12, out=tmp); // bits from 0 to 12 of address are 0
+    Not(in=tmp, out=restzeroes); 
+    And(a=msones, b=tmp, out=tmp2);
+    And(a=msones, b=restzeroes, out=useKeyboard);
+    And(a=tmp2, b=useKeyboard, out=addrNotAllowed);
+    Keyboard(out=keyOut);
+
+    Or(a=useRam, b=useKeyboard, out=ramOrKey);
+    Not(in=ramOrKey, out=useScreen);
+    And(a=useScreen, b=load, out=loadAndScreen);
+    Screen(in=in, load=loadAndScreen, address=address[0..12], out=screenOut);
+
+    Mux16(a=false, b=ramOut, sel=useRam, out=ramMux);
+    Mux16(a=ramMux, b=keyOut, sel=useKeyboard, out=keyMux);
+    Mux16(a=keyMux, b=screenOut, sel=useScreen, out=screenMux);
+    Mux16(a=screenMux, b=false, sel=addrNotAllowed, out=out);
+}
