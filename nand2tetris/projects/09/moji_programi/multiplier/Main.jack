@@ -1,0 +1,12 @@
+class Main {
+    function void main() {
+        var int inputNum;
+
+        let inputNum = Keyboard.readInt("Enter number which will be multiplied by 5: ");
+
+        do Output.printString("Result is: ");
+        
+        do Output.printInt(inputNum*5);
+        return;
+    }
+}
