@@ -4,4 +4,6 @@
 // File name: projects/07/StackArithmetic/SimpleAdd/SimpleAdd.vm
 
 // Pushes and adds two constants.
-push pointer 0
+push constant 7
+push constant 8
+add
